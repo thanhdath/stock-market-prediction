@@ -69,7 +69,7 @@ model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
 # In[6]:
 
 
-model.fit(inputX, inputY, epochs=1000, batch_size=4)
+model.fit(inputX, inputY, epochs=10000, batch_size=24)
 
 
 # In[7]:
