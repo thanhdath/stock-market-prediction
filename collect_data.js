@@ -1,13 +1,14 @@
 // Go to http://s.cafef.vn/Lich-su-giao-dich-VNINDEX-1.chn in browsers
 // F12, move to tab Console. Paste this script
-// After load to page 100, look at bottom, click "Create new file" and click 'Download'
 
 // Create text area
 
 $('body').append(
-  '<textarea id="textbox">Type something here</textarea> ' +
+  '<div style="display: none;">' +
+  '<textarea id="textbox"></textarea> ' +
   '<button id="create">Create file</button> '+
-  '<a download="data_stock_market.txt" id="downloadlink" style="display: none">Download</a>'
+  '<a download="data_stock_market.csv" id="downloadlink" style="display: none">Download</a>' +
+  '</div>'
 );
 
 // Create downloadable
@@ -29,15 +30,14 @@ var textFile = null,
     return textFile;
   };
 
-
-  var create = document.getElementById('create'),
-    textbox = document.getElementById('textbox');
-
-  create.addEventListener('click', function () {
-    var link = document.getElementById('downloadlink');
-    link.href = makeTextFile(textbox.value);
-    link.style.display = 'block';
-  }, false);
+  var create = $('#create');
+  var textbox = $('#textbox');
+  create.click(function() {
+    var link = $('#downloadlink');
+    link.attr('href', makeTextFile(textbox.val()));
+    // $('#downloadlink').show();
+    $('#downloadlink')[0].click();
+  });
 })();
 
 // Collect datas
@@ -73,10 +73,11 @@ function collect() {
   collectDatasInCurrentPage();
   if (page >= 100) {
     // Print datas in textarea
-    $('#textbox').val('date, close_price\r\n');
     datas.forEach(function(data) {
-      $('#textbox').val($('#textbox').val() + data.date + ',' + data.close_price + '\r\n');
+      $('#textbox').val(data.date + ',' + data.close_price + '\r\n' + $('#textbox').val());
     });
+    $('#textbox').val('date,close_price\r\n' + $('#textbox').val());
+    $('#create').trigger('click');
     return;
   }
   page++;
