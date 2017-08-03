@@ -1,3 +1,3 @@
 # stock-market-prediction
 
-You're looking at dangerous project.
+You're looking at a dangerous project.
