@@ -5,7 +5,7 @@
 
 
 import numpy
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import pandas
 import math
 from keras.models import Sequential
@@ -18,9 +18,9 @@ from sklearn.metrics import mean_squared_error
 # In[15]:
 
 
-# def showGraph(data):
-#     plt.plot(data)
-#     plt.show()
+def showGraph(data):
+    plt.plot(data)
+    plt.show()
 # convert dataset to x and y
 def create_dataset(dataset, look_back=1):
     dataX, dataY = [], []
@@ -59,11 +59,11 @@ for i in range(loop):
 
 
   # split into train set and test set
-  # train_size = int(len(dataset) * 0.67)
-  train_size = int(len(dataset))
-  # test_size = len(dataset) - train_size
-  # train, test = dataset[0:train_size, :], dataset[train_size:len(dataset), :]
-  train = dataset[0:train_size, :]
+  train_size = int(len(dataset) * 0.67)
+  # train_size = int(len(dataset))
+  test_size = len(dataset) - train_size
+  train, test = dataset[0:train_size, :], dataset[train_size:len(dataset), :]
+  # train = dataset[0:train_size, :]
 
 
   # In[14]:
@@ -78,7 +78,7 @@ for i in range(loop):
 
   look_back = 1
   trainX, trainY = create_dataset(train, look_back)
-  # testX, testY = create_dataset(test, look_back)
+  testX, testY = create_dataset(test, look_back)
 
 
   # In[23]:
@@ -103,35 +103,35 @@ for i in range(loop):
 
   # make predictions
   trainPredict = model.predict(trainX)
-  # testPredict = model.predict(testX)
+  testPredict = model.predict(testX)
   # invert predictions
   trainPredict = scaler.inverse_transform(trainPredict)
   trainY = scaler.inverse_transform([trainY])
-  # testPredict = scaler.inverse_transform(testPredict)
-  # testY = scaler.inverse_transform([testY])
+  testPredict = scaler.inverse_transform(testPredict)
+  testY = scaler.inverse_transform([testY])
   # calculate root mean squared error
   trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:,0]))
   print('Train Score: %.2f RMSE' % (trainScore))
-  # testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:,0]))
-  # print('Test Score: %.2f RMSE' % (testScore))
+  testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:,0]))
+  print('Test Score: %.2f RMSE' % (testScore))
 
 
   # In[30]:
 
 
   # shift train predictions for plotting
-  # trainPredictPlot = numpy.empty_like(dataset)
-  # trainPredictPlot[:, :] = numpy.nan
-  # trainPredictPlot[look_back:len(trainPredict)+look_back, :] = trainPredict
+  trainPredictPlot = numpy.empty_like(dataset)
+  trainPredictPlot[:, :] = numpy.nan
+  trainPredictPlot[look_back:len(trainPredict)+look_back, :] = trainPredict
   # shift test predictions for plotting
-  # testPredictPlot = numpy.empty_like(dataset)
-  # testPredictPlot[:, :] = numpy.nan
-  # testPredictPlot[len(trainPredict)+(look_back*2)+1:len(dataset)-1, :] = testPredict
+  testPredictPlot = numpy.empty_like(dataset)
+  testPredictPlot[:, :] = numpy.nan
+  testPredictPlot[len(trainPredict)+(look_back*2)+1:len(dataset)-1, :] = testPredict
   # plot baseline and predictions
-  # plt.plot(scaler.inverse_transform(dataset))
-  # plt.plot(trainPredictPlot)
-  # plt.plot(testPredictPlot)
-  # plt.show()
+  plt.plot(scaler.inverse_transform(dataset))
+  plt.plot(trainPredictPlot)
+  plt.plot(testPredictPlot)
+  plt.show()
 
 
   # In[55]:
