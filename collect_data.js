@@ -1,5 +1,5 @@
 // Go to http://s.cafef.vn/Lich-su-giao-dich-VNINDEX-1.chn in browsers
-// F12, move to tab Console. Paste this script
+// F12, move to tab Console. Paste this script -> Enter
 
 // Create text area
 
@@ -58,9 +58,13 @@ function collectDatasInCurrentPage() {
   for (var i = 0; i < rows_datas.length; i++) {
     var date = $($(rows_datas[i]).find('.Item_DateItem')[0]).html();
     var close_price = $($(rows_datas[i]).find('.Item_Price10')[0]).html().replace('&nbsp;', '');
+    var high_price = $($(rows_datas[i]).find('.Item_Price10')[5]).html().replace('&nbsp;', '');
+    var low_price = $($(rows_datas[i]).find('.Item_Price10')[6]).html().replace('&nbsp;', '');
     datas.push({
       date: date,
-      close_price: close_price
+      close_price: close_price,
+      // high_price: high_price,
+      // low_price: low_price
     })
   }
 }
@@ -74,9 +78,10 @@ function collect() {
   if (page >= 100) {
     // Print datas in textarea
     datas.forEach(function(data) {
-      $('#textbox').val(data.date + ',' + data.close_price + '\r\n' + $('#textbox').val());
+      // $('#textbox').val(data.date + '|' + data.close_price + '|' + data.high_price + '|' + data.low_price + '\r\n' + $('#textbox').val());
+      $('#textbox').val(data.date + '|' + data.close_price + '\r\n' + $('#textbox').val())
     });
-    $('#textbox').val('date,close_price\r\n' + $('#textbox').val());
+    $('#textbox').val('date,close_price|high_price|low_price\r\n' + $('#textbox').val());
     $('#create').trigger('click');
     return;
   }
