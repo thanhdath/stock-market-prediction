@@ -11,8 +11,6 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 import sys
 
-import pdb
-
 def showGraph(data):
     plt.figure()
     plt.plot(data)
@@ -130,6 +128,8 @@ if __name__== '__main__':
         plt.plot(testY)
         plt.plot(predict)
         plt.savefig('results/normal_neural_trending')
+        with open('results/result_normal_neural_percent.txt', 'w+') as file:
+            file.write(percent_correct)
     elif sys.argv[-1] == 'lstm':
         print('2. LSTM ')
         dataset = read_data('data_stock_market.csv')
@@ -188,8 +188,6 @@ if __name__== '__main__':
         # loop predict only the next day and fit to model
         print('----- Predict Trend -----')
         predict = []
-
-        pdb.set_trace()
 
         for index, today_close_price in enumerate(testX):
             predict_tomorrow = model.predict(today_close_price)[0]
