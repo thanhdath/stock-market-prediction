@@ -232,7 +232,7 @@ def lstm(datafile, result_path):
     test_size = len(dataset) - train_size
     train, test = dataset[0:train_size,:], dataset[train_size:len(dataset),:]
     # reshape into X=t and Y=t+1
-    look_back = 3
+    look_back = 5
     trainX, trainY = create_dataset(train, look_back)
     testX, testY = create_dataset(test, look_back)
     # reshape input to be [samples, time steps, features]
@@ -241,7 +241,7 @@ def lstm(datafile, result_path):
     testX = numpy.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
     # create and fit the LSTM network
     model = Sequential()
-    model.add(LSTM(4, input_shape=(1, look_back)))
+    model.add(LSTM(5, input_shape=(1, look_back)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
     model.fit(trainX, trainY, epochs=100, batch_size=1, verbose=2)
@@ -290,7 +290,7 @@ def lstm(datafile, result_path):
     testY = scaler.inverse_transform([testY])
 
     predict = [x[0] for x in predict]
-    testX = [x[2] for x in testX]
+    testX = [x[look_back-1] for x in testX]
     testY = testY[0]
 
     with open('results/' + result_path + '/result_lstm_trending.csv', 'w+') as file:
