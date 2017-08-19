@@ -60,6 +60,9 @@ function collectDatasInCurrentPage() {
     var close_price = $($(rows_datas[i]).find('.Item_Price10')[0]).html().replace('&nbsp;', '');
     var high_price = $($(rows_datas[i]).find('.Item_Price10')[5]).html().replace('&nbsp;', '');
     var low_price = $($(rows_datas[i]).find('.Item_Price10')[6]).html().replace('&nbsp;', '');
+    close_price = close_price.replace(',', '.');
+    high_price = close_price.replace(',', '.');
+    low_price = close_price.replace(',', '.');
     datas.push({
       date: date,
       close_price: close_price,

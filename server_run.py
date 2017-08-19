@@ -232,7 +232,7 @@ def lstm(datafile, result_path):
     test_size = len(dataset) - train_size
     train, test = dataset[0:train_size,:], dataset[train_size:len(dataset),:]
     # reshape into X=t and Y=t+1
-    look_back = 3
+    look_back = 2
     trainX, trainY = create_dataset(train, look_back)
     testX, testY = create_dataset(test, look_back)
     # reshape input to be [samples, time steps, features]
@@ -290,7 +290,7 @@ def lstm(datafile, result_path):
     testY = scaler.inverse_transform([testY])
 
     predict = [x[0] for x in predict]
-    testX = [x[2] for x in testX]
+    testX = [x[0] for x in testX]
     testY = testY[0]
 
     with open('results/' + result_path + '/result_lstm_trending.csv', 'w+') as file:
@@ -317,20 +317,20 @@ if __name__== '__main__':
     data_vnindex = 'data_stock_market.csv'
     data_sp500 = 'SP500_15082017.csv'
     data_nasdaq = 'Nasdaq_15082017.csv'
-    data_downjone = 'DownJone_15082017.csv'
+    data_downjone = 'DownJone_15082017'
 
     if sys.argv[2] == 'vn-index':
-        datafile, result_path = data_vnindex, 'lstm_vnindex'
+        datafile, result_path = data_vnindex, 'vn_index'
     elif sys.argv[2] == 'sp500':
-        datafile, result_path = data_sp500, 'lstm_sp500'
+        datafile, result_path = data_sp500, 'sp500'
     elif sys.argv[2] == 'nasdaq':
-        datafile, result_path = data_nasdaq, 'lstm_nasdaq'
+        datafile, result_path = data_nasdaq, 'nasdaq'
     elif sys.argv[2] == 'downjone':
-        datafile, result_path = data_downjone, 'lstm_downjone'
+        datafile, result_path = data_downjone, 'downjone'
 
     if sys.argv[1] == 'normal-neural':
         normal_neural(datafile, 'feed_forward')
     elif sys.argv[1] == 'normal-neural-not-scaler':
         normal_neural_not_scaler()
     elif sys.argv[1] == 'lstm':
-        lstm(datafile, result_path)
+        normal_neural(datafile, result_path)
