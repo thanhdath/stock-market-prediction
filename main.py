@@ -338,7 +338,7 @@ def lstm_hl(datafile, result_path):
     test_size = len(dataset) - train_size
     train, test = dataset[0:train_size,:], dataset[train_size:len(dataset),:]
     # reshape into X=t and Y=t+1
-    look_back = 3
+    look_back = 5
     trainX, trainY = create_dataset(train, look_back)
     testX, testY = create_dataset(test, look_back)
     # reshape input to be [samples, time steps, features]
@@ -347,10 +347,10 @@ def lstm_hl(datafile, result_path):
     testX = numpy.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
     # create and fit the LSTM network
     model = Sequential()
-    model.add(LSTM(50, input_shape=(1, look_back)))
+    model.add(LSTM(128, input_shape=(1, look_back)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
-    model.fit(trainX, trainY, epochs=100, batch_size=1, verbose=2)
+    model.fit(trainX, trainY, epochs=200, batch_size=1, verbose=2)
     # make predictions
 
     trainPredict = model.predict(trainX)
@@ -389,7 +389,7 @@ def lstm_hl(datafile, result_path):
     for index, today_close_price in enumerate(testX):
         predict_tomorrow = model.predict(numpy.array([today_close_price]))[0]
         predict.append(predict_tomorrow)
-        model.fit(numpy.array([today_close_price]), numpy.array([testY[index]]), epochs=100, batch_size=1, verbose=0)
+        model.fit(numpy.array([today_close_price]), numpy.array([testY[index]]), epochs=200, batch_size=1, verbose=0)
 
     predict = scaler.inverse_transform(predict)
     testX = scaler.inverse_transform(testX[:, 0])
