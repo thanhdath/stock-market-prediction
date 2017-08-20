@@ -134,89 +134,6 @@ def normal_neural(data_file, result_path):
     with open('results/' + result_path + '/result_normal_neural_percent.txt', 'w+') as file:
         file.write(str(percent_correct))
 
-def normal_neural_not_scaler():
-    print('1. Normal Neural Not Scaler:')
-    # Just test
-    # dataset = read_data('data_stock_market.csv')
-    # saveGraph(dataset, 'not_scaler/data')
-
-    # dataset = numpy.array(dataset)
-
-    # train_size = int(len(dataset) * 0.9)
-    # test_size = len(dataset) - train_size
-    # train, test = dataset[0:train_size, :], dataset[train_size:len(dataset), :]
-
-    # look_back = 1
-    # trainX, trainY = create_dataset(train, look_back)
-    # testX, testY = create_dataset(test, look_back)
-
-    # model = Sequential()
-    # model.add(Dense(1, input_dim=1))
-    # model.add(Dense(4, activation='sigmoid'))
-    # model.add(Dense(1))
-    # model.compile(loss='mean_squared_error', optimizer='adam')
-    # model.fit(trainX, trainY, epochs=100, batch_size=1, verbose=0)
-
-    # print('----- Predict Long Time -----')
-    # # predict long time
-    # # make predictions
-    # trainPredict = model.predict(trainX)
-    # testPredict = model.predict(testX)
-    # # calculate relative error
-    # relativeErrorTrain = relative_error(trainY, trainPredict[:,0])
-    # print('Train Relative Error: %.2f ' % (relativeErrorTrain))
-    # relativeErrorTest = relative_error(testY, testPredict[:,0])
-    # print('Test Relative Error: %.2f ' % (relativeErrorTest))
-    # # shift train predictions for plotting
-    # trainPredictPlot = numpy.empty_like(dataset)
-    # trainPredictPlot[:, :] = numpy.nan
-    # trainPredictPlot[look_back:len(trainPredict)+look_back, :] = trainPredict
-    # # shift test predictions for plotting
-    # testPredictPlot = numpy.empty_like(dataset)
-    # testPredictPlot[:, :] = numpy.nan
-    # testPredictPlot[len(trainPredict)+(look_back*2)+1:len(dataset)-1, :] = testPredict
-    # # plot baseline and predictions
-    # plt.figure(dpi=360)
-    # plt.plot(dataset)
-    # plt.plot(trainPredictPlot)
-    # plt.plot(testPredictPlot)
-    # plt.savefig('results/normal_neural')
-
-
-    # # loop predict only the next day and fit to model
-    # print('----- Predict Trend -----')
-    # predict = []
-
-    # # pdb.set_trace()
-
-    # for index, today_close_price in enumerate(testX):
-    #     predict_tomorrow = model.predict(today_close_price)[0]
-    #     predict.append(predict_tomorrow)
-    #     model.fit(today_close_price, numpy.array([testY[index]]), epochs=100, batch_size=1, verbose=0)
-
-    # testY = [testY]
-    # predict = [x[0] for x in predict]
-    # testX = [x[0] for x in testX]
-
-    # with open('results/result_normal_neural.csv', 'w+') as file:
-    #     file.write('today,tomorrow_reality,tomorrow_predict\n')
-    #     for index in range(len(testX)):
-    #         file.write(str(testX[index]) + '|' + str(testY[0][index])  + '|' + str(predict[index]))
-    #         file.write('\n')
-
-    # trend_reallity = [numpy.sign(y - x) for x, y in zip(testX, testY[0])]
-    # trend_predict = [numpy.sign(y - x) for x, y in zip(testX, predict)]
-
-    # number_correct = sum([(0, 1)[x == y] for x, y in zip(trend_reallity, trend_predict)])
-    # percent_correct = number_correct * 100 / len(testX)
-    # print('Percent Correct: %.2f%%' % percent_correct)
-    # plt.figure(dpi=360)
-    # plt.plot(testY)
-    # plt.plot(predict)
-    # plt.savefig('results/not_scaler/normal_neural_trending')
-    # with open('results/not_scaler/result_normal_neural_percent.txt', 'w+') as file:
-    #     file.write(str(percent_correct))
-
 def lstm(datafile, result_path):
     print('2. LSTM ')
     dataset = read_data(datafile)
@@ -281,7 +198,7 @@ def lstm(datafile, result_path):
     predict = []
 
     for index, today_close_price in enumerate(testX):
-        predict_tomorrow = model.predict(numpy.array([today_close_price]))[0][0]
+        predict_tomorrow = model.predict(numpy.array([today_close_price]))[0]
         predict.append(predict_tomorrow)
         model.fit(numpy.array([today_close_price]), numpy.array([testY[index]]), epochs=100, batch_size=1, verbose=0)
 
@@ -299,7 +216,7 @@ def lstm(datafile, result_path):
     testX = scaler.inverse_transform(testX[:, 0])
     testY = scaler.inverse_transform([testY])
 
-    # predict = [x[0] for x in predict]
+    predict = [x[0] for x in predict]
     testX = [x[look_back-1] for x in testX]
     testY = testY[0]
 
