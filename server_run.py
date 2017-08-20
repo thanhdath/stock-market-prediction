@@ -228,11 +228,11 @@ def lstm(datafile, result_path):
     dataset = dataset[:-1]
 
     # split into train and test sets
-    train_size = int(len(dataset) * 0.67)
+    train_size = int(len(dataset) * 0.85)
     test_size = len(dataset) - train_size
     train, test = dataset[0:train_size,:], dataset[train_size:len(dataset),:]
     # reshape into X=t and Y=t+1
-    look_back = 2
+    look_back = 5
     trainX, trainY = create_dataset(train, look_back)
     testX, testY = create_dataset(test, look_back)
     # reshape input to be [samples, time steps, features]
@@ -241,7 +241,7 @@ def lstm(datafile, result_path):
     testX = numpy.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
     # create and fit the LSTM network
     model = Sequential()
-    model.add(LSTM(4, input_shape=(1, look_back)))
+    model.add(LSTM(12, input_shape=(1, look_back)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
     model.fit(trainX, trainY, epochs=100, batch_size=1, verbose=2)
@@ -290,7 +290,7 @@ def lstm(datafile, result_path):
     testY = scaler.inverse_transform([testY])
 
     predict = [x[0] for x in predict]
-    testX = [x[0] for x in testX]
+    testX = [x[look_back-1] for x in testX]
     testY = testY[0]
 
     with open('results/' + result_path + '/result_lstm_trending.csv', 'w+') as file:
@@ -317,20 +317,20 @@ if __name__== '__main__':
     data_vnindex = 'data_stock_market.csv'
     data_sp500 = 'SP500_15082017.csv'
     data_nasdaq = 'Nasdaq_15082017.csv'
-    data_downjone = 'DownJone_15082017'
+    data_downjone = 'DownJone_15082017.csv'
 
     if sys.argv[2] == 'vn-index':
-        datafile, result_path = data_vnindex, 'vn_index'
+        datafile, result_path = data_vnindex, 'lstm_vnindex'
     elif sys.argv[2] == 'sp500':
-        datafile, result_path = data_sp500, 'sp500'
+        datafile, result_path = data_sp500, 'lstm_sp500'
     elif sys.argv[2] == 'nasdaq':
-        datafile, result_path = data_nasdaq, 'nasdaq'
+        datafile, result_path = data_nasdaq, 'lstm_nasdaq'
     elif sys.argv[2] == 'downjone':
-        datafile, result_path = data_downjone, 'downjone'
+        datafile, result_path = data_downjone, 'lstm_downjone'
 
     if sys.argv[1] == 'normal-neural':
         normal_neural(datafile, 'feed_forward')
     elif sys.argv[1] == 'normal-neural-not-scaler':
         normal_neural_not_scaler()
     elif sys.argv[1] == 'lstm':
-        normal_neural(datafile, result_path)
+        lstm(datafile, result_path)

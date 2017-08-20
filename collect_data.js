@@ -61,13 +61,13 @@ function collectDatasInCurrentPage() {
     var high_price = $($(rows_datas[i]).find('.Item_Price10')[5]).html().replace('&nbsp;', '');
     var low_price = $($(rows_datas[i]).find('.Item_Price10')[6]).html().replace('&nbsp;', '');
     close_price = close_price.replace(',', '.');
-    high_price = close_price.replace(',', '.');
-    low_price = close_price.replace(',', '.');
+    high_price = high_price.replace(',', '.');
+    low_price = low_price.replace(',', '.');
     datas.push({
       date: date,
       close_price: close_price,
-      // high_price: high_price,
-      // low_price: low_price
+      high_price: high_price,
+      low_price: low_price
     })
   }
 }
@@ -81,8 +81,8 @@ function collect() {
   if (page >= 100) {
     // Print datas in textarea
     datas.forEach(function(data) {
-      // $('#textbox').val(data.date + '|' + data.close_price + '|' + data.high_price + '|' + data.low_price + '\r\n' + $('#textbox').val());
-      $('#textbox').val(data.date + '|' + data.close_price + '\r\n' + $('#textbox').val())
+      $('#textbox').val(data.date + '|' + data.close_price + '|' + data.high_price + '|' + data.low_price + '\r\n' + $('#textbox').val());
+      // $('#textbox').val(data.date + '|' + data.close_price + '\r\n' + $('#textbox').val())
     });
     $('#textbox').val('date,close_price|high_price|low_price\r\n' + $('#textbox').val());
     $('#create').trigger('click');
