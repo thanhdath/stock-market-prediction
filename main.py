@@ -365,11 +365,11 @@ if __name__== '__main__':
     if sys.argv[2] == 'vn-index':
         datafile, result_path, format_date = data_vnindex, 'lstm_vnindex', '%d/%m/%Y'
     elif sys.argv[2] == 'sp500':
-        datafile, result_path, format_date = data_sp500, 'lstm_sp500', '%Y/%m/%d'
+        datafile, result_path, format_date = data_sp500, 'lstm_sp500', '%Y-%d-%m'
     elif sys.argv[2] == 'nasdaq':
-        datafile, result_path, format_date = data_nasdaq, 'lstm_nasdaq', '%Y/%m/%d'
+        datafile, result_path, format_date = data_nasdaq, 'lstm_nasdaq', '%Y-%m-%d'
     elif sys.argv[2] == 'downjone':
-        datafile, result_path, format_date = data_downjone, 'lstm_downjone', '%Y/%m/%d'
+        datafile, result_path, format_date = data_downjone, 'lstm_downjone', '%Y-%m-%d'
     elif sys.argv[2] == 'vn-index-hl':
         datafile, result_path = data_vnindex_high_low, 'lstm_vnindex_hl'
 
