@@ -210,7 +210,6 @@ def lstm(datafile, result_path, format_date='%d/%m/%Y'):
     # loop predict only the next day and fit to model
     print('----- Predict Trend -----')
     predict = []
-    pdb.set_trace()
     dates_test = dataframe['date'].values[(len(dataset) - len(testY) - 1):(len(dataset)-1)]
 
     for index, today_close_price in enumerate(testX):
