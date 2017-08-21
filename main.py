@@ -10,6 +10,8 @@ from keras.layers import LSTM
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 import sys
+import matplotlib.dates as mdates
+import datetime as dt
 
 import pdb
 
@@ -41,6 +43,14 @@ def relative_error(xs, ys):
     return error
 def read_data(file_name):
     return pandas.read_csv('datas/' + file_name, usecols=[1], sep='|')
+def saveGraphWithDate(dates, y_axis, file_name, format_date):
+    plt.figure(dpi=360)
+    x = [dt.datetime.strptime(d,format_date).date() for d in dates]
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%Y'))
+    plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=6))
+    plt.plot(x,y_axis)
+    plt.gcf().autofmt_xdate()
+    plt.savefig('results/' + file_name)
 
 def normal_neural(data_file, result_path):
     print('1. Normal Neural:')
@@ -136,8 +146,12 @@ def normal_neural(data_file, result_path):
 
 def lstm(datafile, result_path):
     print('2. LSTM ')
-    dataset = read_data(datafile)
-    saveGraph(dataset, result_path + '/data')
+    # dataset = read_data(datafile)
+    # saveGraph(dataset, result_path + '/data')
+    dataframe = pandas.read_csv('datas/' + datafile, sep='|')
+    saveGraphWithDate(dataframe['date'], dataframe['close_price'], result_path + '/data', '%d/%m/%Y')
+    dataset = dataframe['close_price'].values.reshape(dataframe['close_price'].shape[0], 1)
+
     # normalize the dataset
     scaler = MinMaxScaler(feature_range=(0, 1))
     # dataset.loc[-1] = [max(dataset.values)*2]
@@ -158,7 +172,7 @@ def lstm(datafile, result_path):
     testX = numpy.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
     # create and fit the LSTM network
     model = Sequential()
-    model.add(LSTM(128, input_shape=(1, look_back)))
+    model.add(LSTM(64, input_shape=(1, look_back)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
     model.fit(trainX, trainY, epochs=100, batch_size=1, verbose=2)
@@ -196,21 +210,12 @@ def lstm(datafile, result_path):
     # loop predict only the next day and fit to model
     print('----- Predict Trend -----')
     predict = []
+    dates_test = dataframe['date'].values[(len(dataset) - len(testY)):]
 
     for index, today_close_price in enumerate(testX):
         predict_tomorrow = model.predict(numpy.array([today_close_price]))[0]
         predict.append(predict_tomorrow)
         model.fit(numpy.array([today_close_price]), numpy.array([testY[index]]), epochs=100, batch_size=1, verbose=0)
-
-    # pdb.set_trace()
-    # today_close_price = testX[0]
-    # for i in range(len(testX)):
-    #     today_close_price = today_close_price.reshape(1,1,look_back)
-    #     predict_tomorrow = model.predict(numpy.array(today_close_price))[0][0]
-    #     predict.append(predict_tomorrow)
-    #     today_close_price = numpy.array([today_close_price[0][0][1], today_close_price[0][0][2], predict_tomorrow])
-
-        # model.fit(numpy.array([today_close_price]), numpy.a)
 
     predict = scaler.inverse_transform(predict)
     testX = scaler.inverse_transform(testX[:, 0])
@@ -220,10 +225,19 @@ def lstm(datafile, result_path):
     testX = [x[look_back-1] for x in testX]
     testY = testY[0]
 
+    print(dates_test[0], dates_test[-1], len(dates_test))
+    print(testY[0], testY[-1], len(testY))
+    print(predict[0], predict[-1], len(predict))
+
+    # with open('results/' + result_path + '/result_lstm_trending.csv', 'w+') as file:
+    #     file.write('today,tomorrow_reality,tomorrow_predict\n')
+    #     for index in range(len(testX)):
+    #         file.write(str(testX[index]) + '|' + str(testY[index])  + '|' + str(predict[index]))
+    #         file.write('\n')
     with open('results/' + result_path + '/result_lstm_trending.csv', 'w+') as file:
-        file.write('today,tomorrow_reality,tomorrow_predict\n')
-        for index in range(len(testX)):
-            file.write(str(testX[index]) + '|' + str(testY[index])  + '|' + str(predict[index]))
+        file.write('date,close_price,predict\n')
+        for index in range(len(testY)):
+            file.write(str(dates_test[index]) + '|' + str(testY[index])  + '|' + str(predict[index]))
             file.write('\n')
 
     trend_reallity = [numpy.sign(y - x) for x, y in zip(testX, testY)]
@@ -231,11 +245,16 @@ def lstm(datafile, result_path):
 
     number_correct = sum([(0, 1)[x == y] for x, y in zip(trend_reallity, trend_predict)])
     percent_correct = number_correct * 100 / len(testX)
-    print(model.get_weights())
+    # print(model.get_weights())
     print('Percent Correct: %.2f%%' % percent_correct)
+
     plt.figure(dpi=360)
-    plt.plot(testY, linewidth=1.0)
-    plt.plot(predict, linewidth=1.0)
+    dates_test = [dt.datetime.strptime(d, '%d/%m/%Y').date() for d in dates_test]
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%Y'))
+    plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=3))
+    plt.plot(dates_test, testY, linewidth=1.0)
+    plt.plot(dates_test, predict, linewidth=1.0)
+    plt.gcf().autofmt_xdate()
     plt.savefig('results/' + result_path + '/trending')
     with open('results/' + result_path + '/result_lstm.txt', 'w+') as file:
         file.write(str(percent_correct))
