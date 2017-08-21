@@ -144,12 +144,12 @@ def normal_neural(data_file, result_path):
     with open('results/' + result_path + '/result_normal_neural_percent.txt', 'w+') as file:
         file.write(str(percent_correct))
 
-def lstm(datafile, result_path):
+def lstm(datafile, result_path, format_date='%d/%m/%Y'):
     print('2. LSTM ')
     # dataset = read_data(datafile)
     # saveGraph(dataset, result_path + '/data')
     dataframe = pandas.read_csv('datas/' + datafile, sep='|')
-    saveGraphWithDate(dataframe['date'], dataframe['close_price'], result_path + '/data', '%d/%m/%Y')
+    saveGraphWithDate(dataframe['date'], dataframe['close_price'], result_path + '/data', format_date)
     dataset = dataframe['close_price'].values.reshape(dataframe['close_price'].shape[0], 1)
 
     # normalize the dataset
@@ -210,7 +210,8 @@ def lstm(datafile, result_path):
     # loop predict only the next day and fit to model
     print('----- Predict Trend -----')
     predict = []
-    dates_test = dataframe['date'].values[(len(dataset) - len(testY)):]
+    pdb.set_trace()
+    dates_test = dataframe['date'].values[(len(dataset) - len(testY) - 1):(len(dataset)-1)]
 
     for index, today_close_price in enumerate(testX):
         predict_tomorrow = model.predict(numpy.array([today_close_price]))[0]
@@ -249,7 +250,7 @@ def lstm(datafile, result_path):
     print('Percent Correct: %.2f%%' % percent_correct)
 
     plt.figure(dpi=360)
-    dates_test = [dt.datetime.strptime(d, '%d/%m/%Y').date() for d in dates_test]
+    dates_test = [dt.datetime.strptime(d, format_date).date() for d in dates_test]
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%Y'))
     plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=3))
     plt.plot(dates_test, testY, linewidth=1.0)
@@ -363,13 +364,13 @@ if __name__== '__main__':
     data_vnindex_high_low = 'vnindex_high_low.csv'
 
     if sys.argv[2] == 'vn-index':
-        datafile, result_path = data_vnindex, 'lstm_vnindex'
+        datafile, result_path, format_date = data_vnindex, 'lstm_vnindex', '%d/%m/%Y'
     elif sys.argv[2] == 'sp500':
-        datafile, result_path = data_sp500, 'lstm_sp500'
+        datafile, result_path, format_date = data_sp500, 'lstm_sp500', '%Y/%m/%d'
     elif sys.argv[2] == 'nasdaq':
-        datafile, result_path = data_nasdaq, 'lstm_nasdaq'
+        datafile, result_path, format_date = data_nasdaq, 'lstm_nasdaq', '%Y/%m/%d'
     elif sys.argv[2] == 'downjone':
-        datafile, result_path = data_downjone, 'lstm_downjone'
+        datafile, result_path, format_date = data_downjone, 'lstm_downjone', '%Y/%m/%d'
     elif sys.argv[2] == 'vn-index-hl':
         datafile, result_path = data_vnindex_high_low, 'lstm_vnindex_hl'
 
@@ -378,4 +379,4 @@ if __name__== '__main__':
     elif sys.argv[1] == 'normal-neural-not-scaler':
         normal_neural_not_scaler()
     elif sys.argv[1] == 'lstm':
-        lstm(datafile, result_path)
+        lstm(datafile, result_path, format_date)
