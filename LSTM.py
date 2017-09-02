@@ -85,7 +85,7 @@ for look_back in look_backs:
     model = Model(input=model_input, output=model_output)
 
     model.compile(loss='mean_squared_error', optimizer='adam')
-    model.fit(trainX, trainY, epochs=epochs, batch_size=1, verbose=2)
+    model.fit(trainX, trainY, epochs=epochs, batch_size=1, verbose=0)
 
 
     print('----- Predict Trend -----')
