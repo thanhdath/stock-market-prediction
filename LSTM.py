@@ -114,7 +114,7 @@ for look_back in look_backs:
     percents_correct.append({'look_back': look_back, 'percent': _percent_correct})
     print('Look_back: ' + str(look_back) + ' | percent: ' + str(_percent_correct))
 
-with open('results/' + result_path + '/percents.csv', 'w+') as file:
-    file.write('look_back|percent\n')
-    for i in percents_correct:
-        file.write(str(i['look_back']) + '|' + str(i['percent']) + '\n')
+    with open('results/' + result_path + '/percents.csv', 'w+') as file:
+        file.write('look_back|percent\n')
+        for i in percents_correct:
+            file.write(str(i['look_back']) + '|' + str(i['percent']) + '\n')
