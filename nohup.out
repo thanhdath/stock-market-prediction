@@ -1,0 +1,427 @@
+<<<<<<< HEAD
+2017-08-21 19:59:09.949000: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 19:59:09.949121: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 19:59:09.949164: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 19:59:09.949220: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 19:59:09.949267: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+2. LSTM 
+Epoch 1/100
+1s - loss: 0.0042
+Epoch 2/100
+1s - loss: 4.3311e-04
+Epoch 3/100
+1s - loss: 4.0648e-04
+Epoch 4/100
+2s - loss: 3.7216e-04
+Epoch 5/100
+2s - loss: 3.5716e-04
+Epoch 6/100
+2s - loss: 3.4708e-04
+Epoch 7/100
+2s - loss: 3.2820e-04
+Epoch 8/100
+1s - loss: 3.2990e-04
+Epoch 9/100
+1s - loss: 3.0701e-04
+Epoch 10/100
+1s - loss: 3.0079e-04
+Epoch 11/100
+1s - loss: 3.2359e-04
+Epoch 12/100
+1s - loss: 2.7147e-04
+Epoch 13/100
+1s - loss: 2.7341e-04
+Epoch 14/100
+2s - loss: 2.7633e-04
+Epoch 15/100
+1s - loss: 2.8461e-04
+Epoch 16/100
+1s - loss: 2.6798e-04
+Epoch 17/100
+1s - loss: 3.0434e-04
+Epoch 18/100
+1s - loss: 2.7753e-04
+Epoch 19/100
+1s - loss: 2.7839e-04
+Epoch 20/100
+1s - loss: 2.5489e-04
+Epoch 21/100
+1s - loss: 2.6483e-04
+Epoch 22/100
+1s - loss: 2.6709e-04
+Epoch 23/100
+1s - loss: 2.8617e-04
+Epoch 24/100
+2s - loss: 2.4066e-04
+Epoch 25/100
+1s - loss: 2.6346e-04
+Epoch 26/100
+1s - loss: 2.6415e-04
+Epoch 27/100
+1s - loss: 2.8338e-04
+Epoch 28/100
+1s - loss: 2.6191e-04
+Epoch 29/100
+2s - loss: 2.5806e-04
+Epoch 30/100
+1s - loss: 2.6419e-04
+Epoch 31/100
+1s - loss: 2.5057e-04
+Epoch 32/100
+1s - loss: 2.6623e-04
+Epoch 33/100
+2s - loss: 2.6145e-04
+Epoch 34/100
+2s - loss: 2.5107e-04
+Epoch 35/100
+2s - loss: 2.4914e-04
+Epoch 36/100
+2s - loss: 2.5802e-04
+Epoch 37/100
+2s - loss: 2.6468e-04
+Epoch 38/100
+2s - loss: 2.4556e-04
+Epoch 39/100
+2s - loss: 2.3909e-04
+Epoch 40/100
+2s - loss: 2.6966e-04
+Epoch 41/100
+2s - loss: 2.6207e-04
+Epoch 42/100
+2s - loss: 2.4594e-04
+Epoch 43/100
+2s - loss: 2.4484e-04
+Epoch 44/100
+2s - loss: 2.4614e-04
+Epoch 45/100
+2s - loss: 2.6463e-04
+Epoch 46/100
+2s - loss: 2.5233e-04
+Epoch 47/100
+2s - loss: 2.3729e-04
+Epoch 48/100
+2s - loss: 2.3882e-04
+Epoch 49/100
+2s - loss: 2.2896e-04
+Epoch 50/100
+2s - loss: 2.4670e-04
+Epoch 51/100
+2s - loss: 2.6242e-04
+Epoch 52/100
+2s - loss: 2.5283e-04
+Epoch 53/100
+2s - loss: 2.2876e-04
+Epoch 54/100
+2s - loss: 2.5560e-04
+Epoch 55/100
+2s - loss: 2.4355e-04
+Epoch 56/100
+2s - loss: 2.4873e-04
+Epoch 57/100
+2s - loss: 2.5399e-04
+Epoch 58/100
+2s - loss: 2.4859e-04
+Epoch 59/100
+2s - loss: 2.3500e-04
+Epoch 60/100
+2s - loss: 2.3677e-04
+Epoch 61/100
+2s - loss: 2.3795e-04
+Epoch 62/100
+1s - loss: 2.3029e-04
+Epoch 63/100
+2s - loss: 2.3871e-04
+Epoch 64/100
+2s - loss: 2.4103e-04
+Epoch 65/100
+2s - loss: 2.4325e-04
+Epoch 66/100
+2s - loss: 2.4727e-04
+Epoch 67/100
+2s - loss: 2.3356e-04
+Epoch 68/100
+2s - loss: 2.3402e-04
+Epoch 69/100
+2s - loss: 2.3501e-04
+Epoch 70/100
+2s - loss: 2.3222e-04
+Epoch 71/100
+2s - loss: 2.4184e-04
+Epoch 72/100
+1s - loss: 2.3361e-04
+Epoch 73/100
+1s - loss: 2.4287e-04
+Epoch 74/100
+2s - loss: 2.3252e-04
+Epoch 75/100
+2s - loss: 2.3341e-04
+Epoch 76/100
+1s - loss: 2.2903e-04
+Epoch 77/100
+1s - loss: 2.3566e-04
+Epoch 78/100
+1s - loss: 2.2984e-04
+Epoch 79/100
+1s - loss: 2.3421e-04
+Epoch 80/100
+2s - loss: 2.6719e-04
+Epoch 81/100
+2s - loss: 2.2361e-04
+Epoch 82/100
+2s - loss: 2.4906e-04
+Epoch 83/100
+2s - loss: 2.2954e-04
+Epoch 84/100
+2s - loss: 2.3001e-04
+Epoch 85/100
+2s - loss: 2.3104e-04
+Epoch 86/100
+2s - loss: 2.3056e-04
+Epoch 87/100
+2s - loss: 2.2719e-04
+Epoch 88/100
+1s - loss: 2.3367e-04
+Epoch 89/100
+1s - loss: 2.3785e-04
+Epoch 90/100
+1s - loss: 2.3452e-04
+Epoch 91/100
+1s - loss: 2.2541e-04
+Epoch 92/100
+1s - loss: 2.3508e-04
+Epoch 93/100
+1s - loss: 2.2516e-04
+Epoch 94/100
+1s - loss: 2.2724e-04
+Epoch 95/100
+1s - loss: 2.2428e-04
+Epoch 96/100
+1s - loss: 2.3821e-04
+Epoch 97/100
+2s - loss: 2.2373e-04
+Epoch 98/100
+2s - loss: 2.3469e-04
+Epoch 99/100
+2s - loss: 2.3052e-04
+Epoch 100/100
+1s - loss: 2.3324e-04
+----- Predict Trend -----
+2016-01-26 2017-08-14 392
+16167.2304688 21993.7109375 392
+15919.2923647 21861.4323848 392
+Percent Correct: 49.23%
+=======
+2017-08-21 12:59:21.885113: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 12:59:21.885167: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 12:59:21.885175: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 12:59:21.885181: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 12:59:21.885185: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+2. LSTM 
+Epoch 1/100
+2s - loss: 0.0071
+Epoch 2/100
+1s - loss: 4.2900e-04
+Epoch 3/100
+1s - loss: 4.6021e-04
+Epoch 4/100
+1s - loss: 4.0017e-04
+Epoch 5/100
+1s - loss: 3.8975e-04
+Epoch 6/100
+1s - loss: 3.7690e-04
+Epoch 7/100
+1s - loss: 3.9709e-04
+Epoch 8/100
+1s - loss: 3.4648e-04
+Epoch 9/100
+1s - loss: 3.3976e-04
+Epoch 10/100
+1s - loss: 3.5678e-04
+Epoch 11/100
+1s - loss: 3.1036e-04
+Epoch 12/100
+1s - loss: 3.5582e-04
+Epoch 13/100
+1s - loss: 3.3300e-04
+Epoch 14/100
+1s - loss: 3.0995e-04
+Epoch 15/100
+1s - loss: 3.2064e-04
+Epoch 16/100
+1s - loss: 3.1445e-04
+Epoch 17/100
+1s - loss: 3.0149e-04
+Epoch 18/100
+1s - loss: 2.9628e-04
+Epoch 19/100
+1s - loss: 3.1307e-04
+Epoch 20/100
+1s - loss: 3.0391e-04
+Epoch 21/100
+1s - loss: 2.8776e-04
+Epoch 22/100
+1s - loss: 2.6106e-04
+Epoch 23/100
+1s - loss: 2.9713e-04
+Epoch 24/100
+1s - loss: 2.8993e-04
+Epoch 25/100
+1s - loss: 2.6434e-04
+Epoch 26/100
+1s - loss: 2.9308e-04
+Epoch 27/100
+1s - loss: 2.8030e-04
+Epoch 28/100
+1s - loss: 2.8333e-04
+Epoch 29/100
+1s - loss: 2.8493e-04
+Epoch 30/100
+1s - loss: 2.9390e-04
+Epoch 31/100
+1s - loss: 2.9908e-04
+Epoch 32/100
+1s - loss: 2.5633e-04
+Epoch 33/100
+1s - loss: 2.8130e-04
+Epoch 34/100
+1s - loss: 2.6798e-04
+Epoch 35/100
+1s - loss: 2.7034e-04
+Epoch 36/100
+1s - loss: 2.6827e-04
+Epoch 37/100
+1s - loss: 2.8312e-04
+Epoch 38/100
+1s - loss: 2.5675e-04
+Epoch 39/100
+1s - loss: 2.5595e-04
+Epoch 40/100
+1s - loss: 2.6277e-04
+Epoch 41/100
+1s - loss: 2.5121e-04
+Epoch 42/100
+1s - loss: 2.6347e-04
+Epoch 43/100
+1s - loss: 2.7530e-04
+Epoch 44/100
+1s - loss: 2.5055e-04
+Epoch 45/100
+1s - loss: 2.6407e-04
+Epoch 46/100
+1s - loss: 2.5690e-04
+Epoch 47/100
+1s - loss: 2.5355e-04
+Epoch 48/100
+1s - loss: 2.4971e-04
+Epoch 49/100
+1s - loss: 2.7089e-04
+Epoch 50/100
+1s - loss: 2.5596e-04
+Epoch 51/100
+1s - loss: 2.5459e-04
+Epoch 52/100
+1s - loss: 2.8984e-04
+Epoch 53/100
+1s - loss: 2.5965e-04
+Epoch 54/100
+1s - loss: 2.6473e-04
+Epoch 55/100
+1s - loss: 2.5534e-04
+Epoch 56/100
+1s - loss: 2.3920e-04
+Epoch 57/100
+1s - loss: 2.5623e-04
+Epoch 58/100
+1s - loss: 2.5253e-04
+Epoch 59/100
+1s - loss: 2.4739e-04
+Epoch 60/100
+1s - loss: 2.6275e-04
+Epoch 61/100
+1s - loss: 2.6940e-04
+Epoch 62/100
+1s - loss: 2.4369e-04
+Epoch 63/100
+1s - loss: 2.2804e-04
+Epoch 64/100
+1s - loss: 2.5502e-04
+Epoch 65/100
+1s - loss: 2.5617e-04
+Epoch 66/100
+1s - loss: 2.5470e-04
+Epoch 67/100
+1s - loss: 2.4083e-04
+Epoch 68/100
+1s - loss: 2.4917e-04
+Epoch 69/100
+1s - loss: 2.4676e-04
+Epoch 70/100
+1s - loss: 2.4928e-04
+Epoch 71/100
+1s - loss: 2.5848e-04
+Epoch 72/100
+1s - loss: 2.5059e-04
+Epoch 73/100
+1s - loss: 2.3519e-04
+Epoch 74/100
+1s - loss: 2.5189e-04
+Epoch 75/100
+1s - loss: 2.3436e-04
+Epoch 76/100
+1s - loss: 2.4886e-04
+Epoch 77/100
+1s - loss: 2.4806e-04
+Epoch 78/100
+1s - loss: 2.6073e-04
+Epoch 79/100
+1s - loss: 2.5349e-04
+Epoch 80/100
+1s - loss: 2.7358e-04
+Epoch 81/100
+1s - loss: 2.4246e-04
+Epoch 82/100
+1s - loss: 2.4059e-04
+Epoch 83/100
+1s - loss: 2.5859e-04
+Epoch 84/100
+1s - loss: 2.5681e-04
+Epoch 85/100
+1s - loss: 2.6482e-04
+Epoch 86/100
+1s - loss: 2.3199e-04
+Epoch 87/100
+1s - loss: 2.2200e-04
+Epoch 88/100
+1s - loss: 2.5771e-04
+Epoch 89/100
+1s - loss: 2.5391e-04
+Epoch 90/100
+1s - loss: 2.5381e-04
+Epoch 91/100
+1s - loss: 2.4812e-04
+Epoch 92/100
+1s - loss: 2.4807e-04
+Epoch 93/100
+1s - loss: 2.4162e-04
+Epoch 94/100
+1s - loss: 2.5059e-04
+Epoch 95/100
+1s - loss: 2.3910e-04
+Epoch 96/100
+1s - loss: 2.3562e-04
+Epoch 97/100
+1s - loss: 2.3516e-04
+Epoch 98/100
+1s - loss: 2.3205e-04
+Epoch 99/100
+1s - loss: 2.3960e-04
+Epoch 100/100
+1s - loss: 2.4700e-04
+----- Predict Trend -----
+2016-01-26 2017-08-14 392
+1903.63000488 2465.84008789 392
+1897.05727386 2440.99824909 392
+Percent Correct: 44.64%
+>>>>>>> 50cb041... sp500
