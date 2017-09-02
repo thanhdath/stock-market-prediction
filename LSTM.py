@@ -56,7 +56,7 @@ def create_dataset(dataset, look_back=1):
 datafile = 'data_stock_market.csv'
 result_path = 'raw'
 format_date='%d/%m/%Y'
-epochs = 10
+epochs = 300
 
 percents_correct = []
 look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
