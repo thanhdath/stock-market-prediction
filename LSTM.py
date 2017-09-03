@@ -59,9 +59,11 @@ format_date='%d/%m/%Y'
 epochs = 300
 
 percents_correct = []
-look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
+# look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
+look_back = 7
+batch_sizes = list(range(1, 10)) + list(range(12, 20, 2))
 
-for look_back in look_backs:
+for batch_size in batch_sizes:
     dataframe = pandas.read_csv('datas/' + datafile, sep='|')
     dataset = dataframe['close_price'].values.reshape(dataframe['close_price'].shape[0], 1)
 
@@ -85,7 +87,7 @@ for look_back in look_backs:
     model = Model(input=model_input, output=model_output)
 
     model.compile(loss='mean_squared_error', optimizer='adam')
-    model.fit(trainX, trainY, epochs=epochs, batch_size=1, verbose=0)
+    model.fit(trainX, trainY, epochs=epochs, batch_size=batch_size, verbose=0)
 
 
     print('----- Predict Trend -----')
@@ -95,7 +97,7 @@ for look_back in look_backs:
     for index, today_close_price in enumerate(testX):
         predict_tomorrow = model.predict(numpy.array([today_close_price]))[0]
         predict.append(predict_tomorrow)
-        model.fit(numpy.array([today_close_price]), numpy.array([testY[index]]), epochs=epochs, batch_size=1, verbose=0)
+        model.fit(numpy.array([today_close_price]), numpy.array([testY[index]]), epochs=epochs, batch_size=batch_size, verbose=0)
 
     predict = scaler.inverse_transform(predict)
     testY = scaler.inverse_transform(testY)
@@ -111,10 +113,10 @@ for look_back in look_backs:
     _trend_predict = [int(numpy.sign(b[0] - a[0])) for a, b in zip(today, predict)]
     _correct = [1 if a == b else 0 for a, b in zip(_trend_reallity, _trend_predict)]
     _percent_correct = 100*sum(_correct)/len(_correct)
-    percents_correct.append({'look_back': look_back, 'percent': _percent_correct})
-    print('Look_back: ' + str(look_back) + ' | percent: ' + str(_percent_correct))
+    percents_correct.append({'batch_size': batch_size, 'percent': _percent_correct})
+    print('Batch_size: ' + str(batch_size) + ' | percent: ' + str(_percent_correct))
 
     with open('results/' + result_path + '/percents.csv', 'w+') as file:
-        file.write('look_back|percent\n')
+        file.write('look_back|batch_size|percent\n')
         for i in percents_correct:
-            file.write(str(i['look_back']) + '|' + str(i['percent']) + '\n')
+            file.write(str(look_back) + '|' + str(i['batch_size']) + '|' + str(i['percent']) + '\n')
