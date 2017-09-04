@@ -61,7 +61,8 @@ epochs = 300
 percents_correct = []
 # look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
 look_back = 7
-batch_sizes = list(range(1, 10)) + list(range(12, 20, 2))
+# batch_sizes = list(range(1, 10)) + list(range(12, 20, 2))
+batch_sizes = list(range(20, 50, 5))
 
 for batch_size in batch_sizes:
     dataframe = pandas.read_csv('datas/' + datafile, sep='|')
@@ -82,10 +83,9 @@ for batch_size in batch_sizes:
     trainY = trainY.reshape(trainY.shape[0], 1)
     testY = testY.reshape(testY.shape[0], 1)
 
-    model_input = Input(shape=(look_back, 1))
-    model_output = LSTM(1, return_sequences=False)(model_input)
-    model = Model(input=model_input, output=model_output)
-
+    model = Sequential()
+    model.add(LSTM(64, input_shape=(look_back, 1)))
+    model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
     model.fit(trainX, trainY, epochs=epochs, batch_size=batch_size, verbose=0)
 
