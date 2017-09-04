@@ -1,18 +1,48 @@
-2017-09-04 03:42:23.612587: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
-2017-09-04 03:42:23.612660: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
-2017-09-04 03:42:23.612669: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
-2017-09-04 03:42:23.612674: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
-2017-09-04 03:42:23.612679: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-04 07:37:22.881357: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-04 07:37:22.881504: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-04 07:37:22.881516: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-04 07:37:22.881521: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-04 07:37:22.881525: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
 Using TensorFlow backend.
 ----- Predict Trend -----
-Batch_size: 20 | percent: 55.95854922279793
+Batch_size: 1 | percent: 53.78590078328982
 ----- Predict Trend -----
-Batch_size: 25 | percent: 56.476683937823836
+Batch_size: 2 | percent: 56.13577023498694
 ----- Predict Trend -----
-Batch_size: 30 | percent: 55.69948186528497
+Batch_size: 3 | percent: 56.65796344647519
 ----- Predict Trend -----
-Batch_size: 35 | percent: 52.590673575129536
+Batch_size: 4 | percent: 54.56919060052219
 ----- Predict Trend -----
-Batch_size: 40 | percent: 53.36787564766839
+Batch_size: 5 | percent: 52.74151436031332
 ----- Predict Trend -----
-Batch_size: 45 | percent: 54.40414507772021
+Batch_size: 6 | percent: 55.09138381201044
+----- Predict Trend -----
+Batch_size: 7 | percent: 53.78590078328982
+----- Predict Trend -----
+Batch_size: 8 | percent: 54.56919060052219
+----- Predict Trend -----
+Batch_size: 9 | percent: 53.00261096605744
+----- Predict Trend -----
+Batch_size: 12 | percent: 55.61357702349869
+----- Predict Trend -----
+Batch_size: 14 | percent: 55.35248041775457
+----- Predict Trend -----
+Batch_size: 16 | percent: 54.04699738903394
+----- Predict Trend -----
+Batch_size: 18 | percent: 54.83028720626632
+----- Predict Trend -----
+Batch_size: 20 | percent: 53.52480417754569
+----- Predict Trend -----
+Batch_size: 25 | percent: 54.56919060052219
+----- Predict Trend -----
+Batch_size: 30 | percent: 53.26370757180157
+----- Predict Trend -----
+Batch_size: 35 | percent: 53.52480417754569
+----- Predict Trend -----
+Batch_size: 40 | percent: 54.56919060052219
+----- Predict Trend -----
+Batch_size: 45 | percent: 54.56919060052219
+Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7f0d0c143dd8>>
+Traceback (most recent call last):
+  File "/home/dat/.local/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 701, in __del__
+TypeError: 'NoneType' object is not callable
