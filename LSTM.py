@@ -53,16 +53,21 @@ def create_dataset(dataset, look_back=1):
 
 
 
-datafile = 'data_stock_market.csv'
-result_path = 'raw'
+# datafile = 'data_stock_market.csv'
+# result_path = 'raw'
+# format_date='%d/%m/%Y'
+# epochs = 300
+
+datafile = 'DownJone_2015.csv'
+result_path = 'downjone_raw'
 format_date='%d/%m/%Y'
 epochs = 300
 
 percents_correct = []
 # look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
-look_back = 10
-batch_sizes = list(range(1, 10)) + list(range(12, 20, 2)) + list(range(20, 50, 5))
-# batch_sizes =
+look_back = 7
+# batch_sizes = list(range(1, 10)) + list(range(12, 20, 2)) + list(range(20, 50, 5))
+batch_sizes = [1, 2, 3, 4, 5, 7, 10, 12, 15, 20, 25]
 
 for batch_size in batch_sizes:
     dataframe = pandas.read_csv('datas/' + datafile, sep='|')
@@ -73,7 +78,8 @@ for batch_size in batch_sizes:
     dataset = scaler.fit_transform(dataset)
 
     # split into train and test sets
-    train_size = int(len(dataset) * 0.67)
+    # train_size = int(len(dataset) * 0.67)
+    train_size = 566
     test_size = len(dataset) - train_size
     train, test = dataset[0:train_size,:], dataset[train_size:len(dataset),:]
 
