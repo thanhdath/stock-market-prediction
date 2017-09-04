@@ -60,9 +60,9 @@ epochs = 300
 
 percents_correct = []
 # look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
-look_back = 7
-# batch_sizes = list(range(1, 10)) + list(range(12, 20, 2))
-batch_sizes = list(range(20, 50, 5))
+look_back = 10
+batch_sizes = list(range(1, 10)) + list(range(12, 20, 2)) + list(range(20, 50, 5))
+# batch_sizes =
 
 for batch_size in batch_sizes:
     dataframe = pandas.read_csv('datas/' + datafile, sep='|')
