@@ -53,21 +53,21 @@ def create_dataset(dataset, look_back=1):
 
 
 
-# datafile = 'data_stock_market.csv'
-# result_path = 'raw'
-# format_date='%d/%m/%Y'
-# epochs = 300
-
-datafile = 'DownJone_2015.csv'
-result_path = 'downjone_raw'
+datafile = 'data_stock_market.csv'
+result_path = 'raw10'
 format_date='%d/%m/%Y'
 epochs = 300
+
+#datafile = 'DownJone_2015.csv'
+#result_path = 'downjone_raw3'
+#format_date='%d/%m/%Y'
+#epochs = 300
 
 percents_correct = []
 # look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
 look_back = 7
 # batch_sizes = list(range(1, 10)) + list(range(12, 20, 2)) + list(range(20, 50, 5))
-batch_sizes = [1, 2, 3, 4, 5, 7, 10, 12, 15, 20, 25]
+batch_sizes = list(range(20, 50, 5)) + list(range(50, 200, 10)) + list(range(200, 500, 20))
 
 for batch_size in batch_sizes:
     dataframe = pandas.read_csv('datas/' + datafile, sep='|')
@@ -90,7 +90,7 @@ for batch_size in batch_sizes:
     testY = testY.reshape(testY.shape[0], 1)
 
     model = Sequential()
-    model.add(LSTM(64, input_shape=(look_back, 1)))
+    model.add(LSTM(128, input_shape=(look_back, 1)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
     model.fit(trainX, trainY, epochs=epochs, batch_size=batch_size, verbose=0)
