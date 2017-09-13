@@ -53,21 +53,26 @@ def create_dataset(dataset, look_back=1):
 
 
 
-datafile = 'data_stock_market.csv'
-result_path = 'raw10'
-format_date='%d/%m/%Y'
-epochs = 300
+# datafile = 'data_stock_market.csv'
+# result_path = 'raw10'
+# format_date='%d/%m/%Y'
+# epochs = 300
 
 #datafile = 'DownJone_2015.csv'
 #result_path = 'downjone_raw3'
 #format_date='%d/%m/%Y'
 #epochs = 300
 
+datafile = 'EOD-V.csv'
+result_path = 'improve_downjone'
+epochs = 300
+
 percents_correct = []
 # look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
-look_back = 7
+look_back = 14
 # batch_sizes = list(range(1, 10)) + list(range(12, 20, 2)) + list(range(20, 50, 5))
-batch_sizes = list(range(20, 50, 5)) + list(range(50, 200, 10)) + list(range(200, 500, 20))
+# batch_sizes = list(range(20, 50, 5)) + list(range(50, 200, 10)) + list(range(200, 500, 20))
+batch_sizes = [155, 215, 225, 270, 290]
 
 for batch_size in batch_sizes:
     dataframe = pandas.read_csv('datas/' + datafile, sep='|')
@@ -78,8 +83,8 @@ for batch_size in batch_sizes:
     dataset = scaler.fit_transform(dataset)
 
     # split into train and test sets
-    # train_size = int(len(dataset) * 0.67)
-    train_size = 566
+    train_size = int(len(dataset) * 0.67)
+    # train_size = 566
     test_size = len(dataset) - train_size
     train, test = dataset[0:train_size,:], dataset[train_size:len(dataset),:]
 
@@ -110,6 +115,8 @@ for batch_size in batch_sizes:
 
     with open('results/' + result_path + '/result.csv', 'w+') as file:
         file.write('close_price|predict\n')
+        for i in range(len(testX)):
+            file.write(str(testX[i][-1]) + '|')
         for i in range(len(predict)):
             file.write(str(testY[i][0]) + '|' + str(predict[i][0]) + '\n')
 
