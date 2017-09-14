@@ -63,7 +63,7 @@ def create_dataset(dataset, look_back=1):
 #format_date='%d/%m/%Y'
 #epochs = 300
 
-datafile = 'EOD-V.csv'
+datafile = 'DownJone_2015.csv'
 result_path = 'improve_downjone'
 epochs = 300
 

@@ -222,3 +222,24 @@ Batch_size: 440 | percent: 53.626943005181346
 Batch_size: 460 | percent: 52.33160621761658
 ----- Predict Trend -----
 Batch_size: 480 | percent: 52.84974093264249
+2017-09-13 16:14:58.743359: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:14:58.743411: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:14:58.743417: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:14:58.743422: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:14:58.743427: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:25:16.722446: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:25:16.722501: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:25:16.722509: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:25:16.722524: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-13 16:25:16.722529: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+----- Predict Trend -----
+Batch_size: 155 | percent: 54.679802955665025
+----- Predict Trend -----
+Batch_size: 215 | percent: 54.1871921182266
+----- Predict Trend -----
+Batch_size: 225 | percent: 58.12807881773399
+----- Predict Trend -----
+Batch_size: 270 | percent: 57.635467980295566
+----- Predict Trend -----
+Batch_size: 290 | percent: 58.12807881773399
