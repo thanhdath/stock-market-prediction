@@ -66,6 +66,9 @@ epochs = 300
 # datafile = 'DownJone_2015.csv'
 # result_path = 'improve_downjone'
 # epochs = 300
+#datafile = 'data_stock_market.csv'
+#result_path = 'improve_vnindex'
+#epochs = 300
 
 percents_correct = []
 # look_backs = list(range(1, 10)) + list(range(12, 40, 2)) + list(range(45, 100, 5)) + list(range(120, 240, 20))
