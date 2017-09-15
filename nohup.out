@@ -243,3 +243,29 @@ Batch_size: 225 | percent: 58.12807881773399
 Batch_size: 270 | percent: 57.635467980295566
 ----- Predict Trend -----
 Batch_size: 290 | percent: 58.12807881773399
+2017-09-14 16:30:22.707057: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-14 16:30:22.707107: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-14 16:30:22.707114: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-14 16:30:22.707120: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-09-14 16:30:22.707125: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+----- Predict Trend -----
+Batch_size: 150 | percent: 53.69458128078818
+----- Predict Trend -----
+Batch_size: 170 | percent: 52.216748768472904
+----- Predict Trend -----
+Batch_size: 190 | percent: 53.20197044334975
+----- Predict Trend -----
+Batch_size: 210 | percent: 51.724137931034484
+----- Predict Trend -----
+Batch_size: 230 | percent: 54.1871921182266
+----- Predict Trend -----
+Batch_size: 250 | percent: 52.70935960591133
+----- Predict Trend -----
+Batch_size: 270 | percent: 52.70935960591133
+----- Predict Trend -----
+Batch_size: 290 | percent: 53.69458128078818
+Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7fc4c94822b0>>
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 701, in __del__
+TypeError: 'NoneType' object is not callable
